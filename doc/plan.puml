@@ -1,0 +1,156 @@
+@startuml testrail
+
+legend
+1. Create method should be simple or accept json?
+endlegend
+
+interface TestRail {
+    + CaseFields caseFields()
+    + Projects projects()
+    + Iterable<Priority> priorities()
+    + Iterable<Status> statuses()
+}
+TestRail --> CaseFields
+TestRail --> CaseTypes
+TestRail --> Projects
+TestRail --> Priority
+TestRail --> Status
+interface Projects {
+    + Project create(name, ?suite_mode or json config?)
+    + Project get(id)
+    + Iterable<Project> list()
+}
+Projects --> Project
+interface Project {
+    + void update(json)
+    + void delete()
+    ..
+    + Configs configs()
+    + Suites suites()
+    + Iterable<Report> reports()
+    + Iterable<Template> templates()
+}
+Project --> Configs
+Project --> Milestones
+Project --> Plans
+Project --> Report
+Project --> Runs
+Project --> Suites
+Project --> Template
+interface Suites {
+    + Suite create(name or json config?)
+    + Suite get(id)
+    + Iterable<Suite> list()
+}
+Suites --> Suite
+interface Suite {
+    + void update(json)
+    + void delete()
+}
+Suite --> Cases
+Suite --> Sections
+interface Cases {
+    + Case create(section_id, title, template_id or json or CaseConfiguration)
+    + Case get(id)
+    + Iterable<Case> list()
+}
+Cases --> Case
+interface Case {
+    + void update(json)
+    + void delete()
+}
+interface CaseFields {
+    + Iterable<CaseField> list()
+    + CaseField add(json as CaseFieldConfig)
+}
+interface CaseTypes {
+    + Iterable<CaseType> list()
+}
+interface Configs {
+    + ConfigGroup create(name)
+    + Iterable<ConfigGroup> list()
+}
+Configs --> ConfigGroup
+interface ConfigGroup {
+    + Config create(name)
+    + void update(json) : name only
+    + void delete()
+    ..
+    + Iterable<Config> list()
+}
+ConfigGroup --> Config
+interface Config {
+    + void update(json) : name only
+    + void delete()
+}
+interface Milestones {
+    + Milestone create(name or json as MilestoneConfig)
+    + Milestone get(id)
+    + Iterable<Milestone> list()
+}
+Milestones --> Milestone
+interface Milestone {
+    + void update(json)
+    + void delete()
+}
+interface Plans {
+    + Plan create(name or json as PlanConfig)
+    + Plan get(id)
+    + Iterable<Plan> list(?filters)
+}
+Plans --> Plan
+interface Plan {
+    + Entry create(suite_id or json or EntryConfig)
+    + void update(json, all except Entries)
+    + Iterable<Plan.Entry> entries()
+    + void close()
+    + void delete()
+}
+Plan --> Plan.Entry
+interface Plan.Entry {
+    + void update(json as EntryConfig)
+    + void delete()
+}
+interface Priority
+interface Report
+interface Runs {
+    + Run create(json as RunConfig)
+    + Run get(id)
+    + Iterable<Run> list()
+}
+Runs --> Run
+interface Run {
+    + void update(json as RunConfig)
+    + void close()
+    + void delete()
+    ..
+    + Test test(id)
+    + Iterable<Test> tests(?filter(status))
+}
+Run --> Test
+interface Sections {
+    + Section create(name or json as SectionConfig)
+    + Section get(id)
+    + Iterable<Section> list()
+}
+Sections --> Section
+interface Section {
+    + void update(json as SectionConfig)
+    + void delete()
+}
+interface Status
+interface Template
+interface Test {
+    + Result addResult(json as ResultConfig)
+    + Iterable<Result> results(?filters)
+}
+Test --> Result
+interface Users {
+    + User get(id)
+    + ? User getByEmail(email)
+    + Iterable<User> list()
+}
+Users --> User
+interface User
+interface Result
+@enduml
