@@ -1,5 +1,5 @@
-package main.java.com.alphagfx.testrail;
+package com.alphagfx.testrail;
 
 public interface TestRail {
-    
+    Projects projects();
 }
