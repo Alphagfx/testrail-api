@@ -1,13 +1,12 @@
 package com.alphagfx.testrail;
 
+import java.io.IOException;
+
 public interface Projects {
- 
-    Project create(ProjectConfig config);
 
-    Project get(int id);
+    Project create(String name, int suiteMode) throws IOException;
 
-    Iterable<Project> list();
+    Project get(int id) throws IOException;
 
-    
-    interface ProjectConfig {}
+    Iterable<Project> list() throws IOException;
 }

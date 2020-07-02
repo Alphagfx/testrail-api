@@ -1,7 +1,9 @@
 package com.alphagfx.testrail;
 
+import java.io.IOException;
+
 import org.json.JSONObject;
 
 interface JsonPatchable {
-    void update(JSONObject json);
+    void patch(JSONObject json) throws IOException;
 }
