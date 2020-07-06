@@ -15,6 +15,7 @@ TestRail --> CaseTypes
 TestRail --> Projects
 TestRail --> Priority
 TestRail --> Status
+TestRail --> Users
 interface Projects {
     + Project create(name, ?suite_mode or json config?)
     + Project get(id)
