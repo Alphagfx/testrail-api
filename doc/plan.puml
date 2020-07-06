@@ -47,7 +47,6 @@ interface Suite {
     + void update(json)
     + void delete()
 }
-Suite --> Cases
 Suite --> Sections
 interface Cases {
     + Case create(section_id, title, template_id or json or CaseConfiguration)
@@ -138,6 +137,7 @@ interface Section {
     + void update(json as SectionConfig)
     + void delete()
 }
+Section --> Cases
 interface Status
 interface Template
 interface Test {
