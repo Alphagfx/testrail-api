@@ -11,7 +11,9 @@ public interface Section extends JsonReadable, JsonPatchable {
 
     void delete() throws IOException;
 
-    Section create(String name) throws IOException;
+    Section createSection(String name) throws IOException;
 
-    Cases cases() throws IOException;
+    Case createCase(String title, int templateId) throws IOException;
+
+    Cases cases();
 }

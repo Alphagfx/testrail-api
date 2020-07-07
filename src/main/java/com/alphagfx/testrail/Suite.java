@@ -6,7 +6,6 @@ public interface Suite extends JsonReadable, JsonPatchable {
 
     Project project();
 
-
     int id();
 
     void delete() throws IOException;
