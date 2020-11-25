@@ -25,6 +25,8 @@ public interface Project extends JsonReadable, JsonPatchable {
 
     Iterable<Template> templates() throws IOException;
 
+    Milestones milestones();
+
 
     final class Smart implements Project {
 
@@ -73,6 +75,11 @@ public interface Project extends JsonReadable, JsonPatchable {
         @Override
         public Iterable<Template> templates() throws IOException {
             return project.templates();
+        }
+
+        @Override
+        public Milestones milestones() {
+            return project.milestones();
         }
 
         @Override
