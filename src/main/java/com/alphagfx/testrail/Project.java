@@ -17,7 +17,13 @@ public interface Project extends JsonReadable, JsonPatchable {
 
     void delete() throws IOException;
 
+    Runs runs();
+
+    Plans plans();
+
     Suites suites();
+
+    Iterable<Template> templates() throws IOException;
 
 
     final class Smart implements Project {
@@ -50,10 +56,24 @@ public interface Project extends JsonReadable, JsonPatchable {
         }
 
         @Override
+        public Runs runs() {
+            return project.runs();
+        }
+
+        @Override
+        public Plans plans() {
+            return project.plans();
+        }
+
+        @Override
         public Suites suites() {
             return project.suites();
         }
 
+        @Override
+        public Iterable<Template> templates() throws IOException {
+            return project.templates();
+        }
 
         @Override
         public JSONObject json() throws IOException {

@@ -11,7 +11,8 @@ public interface Case extends JsonReadable, JsonPatchable {
 
     String title() throws IOException;
 
-    int templateId() throws IOException;
+    //todo should this be here?
+    Template template() throws IOException;
 
     void delete() throws IOException;
 }
