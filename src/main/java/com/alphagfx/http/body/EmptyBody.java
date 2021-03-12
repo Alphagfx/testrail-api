@@ -1,6 +1,6 @@
-package com.alphagfx.testrail.rest.body;
+package com.alphagfx.http.body;
 
-import com.alphagfx.testrail.rest.Request;
+import com.alphagfx.http.Request;
 
 import java.nio.channels.WritableByteChannel;
 

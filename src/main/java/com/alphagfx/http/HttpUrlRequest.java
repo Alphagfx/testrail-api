@@ -1,6 +1,6 @@
-package com.alphagfx.testrail.rest;
+package com.alphagfx.http;
 
-import com.alphagfx.testrail.rest.body.EmptyBody;
+import com.alphagfx.http.body.EmptyBody;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

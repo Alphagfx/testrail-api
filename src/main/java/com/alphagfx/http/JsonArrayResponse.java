@@ -1,4 +1,4 @@
-package com.alphagfx.testrail.rest;
+package com.alphagfx.http;
 
 import org.json.JSONArray;
 

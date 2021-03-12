@@ -1,4 +1,4 @@
-package com.alphagfx.testrail.rest;
+package com.alphagfx.http;
 
 import java.io.IOException;
 import java.nio.channels.WritableByteChannel;
