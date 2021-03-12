@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.Channels;
@@ -17,7 +18,7 @@ import java.util.Map;
 
 public class HttpUrlRequest implements Request<byte[]> {
 
-	private final String url;
+	private final URI uri;
 	private final String method;
 	private final Map<String, String> headers;
 	private final Body body;
@@ -28,7 +29,11 @@ public class HttpUrlRequest implements Request<byte[]> {
 	}
 
 	public HttpUrlRequest(String url, String method, Map<String, String> headers, Body body) {
-		this.url = url;
+		this(URI.create(url), method, headers, body);
+	}
+
+	public HttpUrlRequest(URI uri, String method, Map<String, String> headers, Body body) {
+		this.uri = uri;
 		this.method = method;
 		this.headers = headers;
 		this.body = body;
@@ -37,29 +42,29 @@ public class HttpUrlRequest implements Request<byte[]> {
 
 	@Override
 	public Request<byte[]> url(String url) {
-		return new HttpUrlRequest(url, this.method, this.headers, this.body);
+		return new HttpUrlRequest(uri.resolve(url), this.method, this.headers, this.body);
 	}
 
 	@Override
 	public Request<byte[]> method(String method) {
-		return new HttpUrlRequest(this.url, method, this.headers, this.body);
+		return new HttpUrlRequest(this.uri, method, this.headers, this.body);
 	}
 
 	@Override
 	public Request<byte[]> header(String header, String value) {
 		Map<String, String> newHeaders = new LinkedHashMap<>(this.headers);
 		newHeaders.merge(header, value, (s1, s2) -> s2);
-		return new HttpUrlRequest(this.url, this.method, newHeaders, this.body);
+		return new HttpUrlRequest(this.uri, this.method, newHeaders, this.body);
 	}
 
 	@Override
 	public Request<byte[]> body(Body body) {
-		return new HttpUrlRequest(this.url, this.method, this.headers, body);
+		return new HttpUrlRequest(this.uri, this.method, this.headers, body);
 	}
 
 	@Override
 	public Response<byte[]> execute() throws IOException {
-		URL url = new URL(this.url);
+		URL url = this.uri.toURL();
 		URLConnection connection = url.openConnection();
 		HttpURLConnection conn = (HttpURLConnection) connection;
 		try {
