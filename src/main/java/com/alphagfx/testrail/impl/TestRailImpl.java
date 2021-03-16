@@ -63,6 +63,6 @@ public class TestRailImpl implements TestRail {
 
 	@Override
 	public Users users() {
-		return new UsersImpl(this);
+		return new UsersImpl(this, base);
 	}
 }

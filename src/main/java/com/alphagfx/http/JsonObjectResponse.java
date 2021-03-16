@@ -7,7 +7,7 @@ public class JsonObjectResponse extends ResponseDecorator<JSONObject> {
 	private final Response<String> strResponse;
 
 
-	JsonObjectResponse(Response<String> strResponse) {
+	public JsonObjectResponse(Response<String> strResponse) {
 		super(strResponse);
 		this.strResponse = strResponse;
 	}
