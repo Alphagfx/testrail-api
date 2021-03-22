@@ -9,8 +9,7 @@
   <packaging>jar</packaging>
 
   <name>testrail-api</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>http://www.example.com</url><!-- FIXME change it to the project's website -->
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

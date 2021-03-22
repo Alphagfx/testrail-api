@@ -1,13 +1,10 @@
 package com.alphagfx.testrail;
 
-import java.io.IOException;
-
 interface Plans {
 
-    Plan create(/* todo verify number of required parameters */) throws IOException;
+	Plan create(/* todo verify number of required parameters */);
 
-    Plan get(int id);
+	Plan get(int id);
 
-    //todo how to use internal filters?
-    Iterable<Plan> list() throws IOException;
+	Iterable<Plan> list();     //todo how to use internal filters?
 }

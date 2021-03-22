@@ -1,16 +1,14 @@
 package com.alphagfx.testrail;
 
-import java.io.IOException;
-
 public interface Run extends JsonReadable, JsonPatchable {
 
     Project project();
 
     int id();
 
-    void close() throws IOException;
+    void close();
 
-    void delete() throws IOException;
+    void delete();
 
-    Iterable<Test> tests() throws IOException;
+    Iterable<Test> tests();
 }

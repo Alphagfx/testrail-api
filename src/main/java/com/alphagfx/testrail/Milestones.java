@@ -1,10 +1,8 @@
 package com.alphagfx.testrail;
 
-import java.io.IOException;
-
 public interface Milestones {
 
-    Milestone create(JsonReadable milestoneConfig) throws IOException;
+    Milestone create(JsonReadable milestoneConfig);
 
-    Iterable<Milestone> list() throws IOException;
+    Iterable<Milestone> list();
 }

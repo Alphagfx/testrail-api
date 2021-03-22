@@ -1,12 +1,10 @@
 package com.alphagfx.testrail;
 
-import java.io.IOException;
-
 public interface Runs {
 
-    Run create(/* todo verify number of required parameters */) throws IOException;
+    Run create(/* todo verify number of required parameters */);
 
-    Run get(int id) throws IOException;
+    Run get(int id);
 
-    Iterable<Run> list() throws IOException;
+    Iterable<Run> list();
 }

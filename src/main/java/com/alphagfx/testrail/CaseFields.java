@@ -1,12 +1,10 @@
 package com.alphagfx.testrail;
 
-import java.io.IOException;
-
 import org.json.JSONObject;
 
 public interface CaseFields {
 
-    CaseField add(JSONObject json) throws IOException;
+    CaseField add(JSONObject json);
 
-    Iterable<CaseField> list() throws IOException;
+    Iterable<CaseField> list();
 }

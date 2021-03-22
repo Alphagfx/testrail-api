@@ -1,10 +1,8 @@
 package com.alphagfx.testrail;
 
-import java.io.IOException;
-
 public interface Cases {
 
-    Case get(int id) throws IOException;
+    Case get(int id);
 
-    Iterable<Case> list() throws IOException;
+    Iterable<Case> list();
 }

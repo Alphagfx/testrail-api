@@ -1,18 +1,16 @@
 package com.alphagfx.testrail;
 
-import java.io.IOException;
-
 public interface TestRail {
 
     CaseFields caseFields();
 
-    Iterable<CaseType> caseTypes() throws IOException;
+    Iterable<CaseType> caseTypes();
 
-    Iterable<Priority> priorities() throws IOException;
+    Iterable<Priority> priorities();
 
     Projects projects();
 
-    Iterable<Status> statuses() throws IOException;
+    Iterable<Status> statuses();
 
     Users users();
 }

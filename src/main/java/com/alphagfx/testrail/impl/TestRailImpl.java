@@ -1,6 +1,7 @@
 package com.alphagfx.testrail.impl;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -36,15 +37,20 @@ public class TestRailImpl implements TestRail {
 	}
 
 	@Override
-	public Iterable<CaseType> caseTypes() throws IOException {
-		var response = new JsonArrayResponse(base.url("index.php?/api/v2/get_case_types").execute());
-		return StreamSupport.stream(response.body().spliterator(), false)
-			.map(o -> new CaseTypeImpl(((JSONObject) o)))
-			.collect(Collectors.toList());
+	public Iterable<CaseType> caseTypes() {
+		try {
+			var response = new JsonArrayResponse(base.url("index.php?/api/v2/get_case_types").execute());
+			List<CaseType> result = StreamSupport.stream(response.body().spliterator(), false)
+				.map(o -> new CaseTypeImpl((JSONObject) o))
+				.collect(Collectors.toList());
+			return result;
+		} catch (IOException e) {
+			throw new RuntimeException("Failed to get case types for " + this, e);
+		}
 	}
 
 	@Override
-	public Iterable<Priority> priorities() throws IOException {
+	public Iterable<Priority> priorities() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -56,7 +62,7 @@ public class TestRailImpl implements TestRail {
 	}
 
 	@Override
-	public Iterable<Status> statuses() throws IOException {
+	public Iterable<Status> statuses() {
 		// TODO Auto-generated method stub
 		return null;
 	}

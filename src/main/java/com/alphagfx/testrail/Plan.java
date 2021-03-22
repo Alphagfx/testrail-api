@@ -1,7 +1,5 @@
 package com.alphagfx.testrail;
 
-import java.io.IOException;
-
 public interface Plan extends JsonReadable, JsonPatchable {
 
     TestRail testrail();
@@ -10,12 +8,11 @@ public interface Plan extends JsonReadable, JsonPatchable {
     int id();
 
 
-    void close() throws IOException;
+    void close();
 
-    void delete() throws IOException;
+    void delete();
 
-    //todo verify number of required parameters
-    Entry create(JsonReadable entryConfig) throws IOException;
+    Entry create(JsonReadable entryConfig); //todo verify number of required parameters
 
     Iterable<Entry> entries();
 
@@ -27,7 +24,7 @@ public interface Plan extends JsonReadable, JsonPatchable {
 
         int id();
 
-        void delete() throws IOException;
+        void delete();
 
         Runs runs();
     }

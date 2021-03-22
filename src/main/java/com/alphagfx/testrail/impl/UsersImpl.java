@@ -1,7 +1,5 @@
 package com.alphagfx.testrail.impl;
 
-import java.io.IOException;
-
 import com.alphagfx.http.Request;
 import com.alphagfx.testrail.TestRail;
 import com.alphagfx.testrail.User;
@@ -20,12 +18,12 @@ public class UsersImpl implements Users {
 
 
 	@Override
-	public User get(int id) throws IOException {
+	public User get(int id) {
 		return new UserImpl(testrail, base, id);
 	}
 
 	@Override
-	public Iterable<User> list() throws IOException {
+	public Iterable<User> list() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,7 +1,5 @@
 package com.alphagfx.testrail;
 
-import java.io.IOException;
-
 import org.json.JSONObject;
 
 public interface Project extends JsonReadable, JsonPatchable {
@@ -15,7 +13,7 @@ public interface Project extends JsonReadable, JsonPatchable {
 
     int id();
 
-    void delete() throws IOException;
+    void delete();
 
     Runs runs();
 
@@ -23,7 +21,7 @@ public interface Project extends JsonReadable, JsonPatchable {
 
     Suites suites();
 
-    Iterable<Template> templates() throws IOException;
+    Iterable<Template> templates();
 
     Milestones milestones();
 
@@ -49,11 +47,11 @@ public interface Project extends JsonReadable, JsonPatchable {
         }
 
         @Override
-        public void delete() throws IOException {
+        public void delete() {
             project.delete();
         }
 
-        public String name() throws IOException {
+        public String name() {
             return json().getString("name");
         }
 
@@ -73,7 +71,7 @@ public interface Project extends JsonReadable, JsonPatchable {
         }
 
         @Override
-        public Iterable<Template> templates() throws IOException {
+        public Iterable<Template> templates() {
             return project.templates();
         }
 
@@ -83,12 +81,12 @@ public interface Project extends JsonReadable, JsonPatchable {
         }
 
         @Override
-        public JSONObject json() throws IOException {
+        public JSONObject json() {
             return project.json();
         }
 
         @Override
-        public void patch(JSONObject json) throws IOException {
+        public void patch(JSONObject json) {
             project.patch(json);
         }
     }

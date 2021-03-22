@@ -1,18 +1,15 @@
 package com.alphagfx.testrail;
 
-import java.io.IOException;
-
 public interface Case extends JsonReadable, JsonPatchable {
 
-    Section section();
+	Section section();
 
 
-    int id();
+	int id();
 
-    String title() throws IOException;
+	String title();
 
-    //todo should this be here?
-    Template template() throws IOException;
+	Template template();
 
-    void delete() throws IOException;
+	void delete();
 }

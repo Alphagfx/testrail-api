@@ -1,7 +1,6 @@
 package com.alphagfx.testrail;
 
 import java.io.File;
-import java.io.IOException;
 
 public interface Test extends JsonReadable {
 
@@ -10,7 +9,7 @@ public interface Test extends JsonReadable {
 
     int id();
 
-    void assign(User assignee, String comment, Iterable<File> attachments) throws IOException;
+    void assign(User assignee, String comment, Iterable<File> attachments);
 
-    Result addResult(JsonReadable result) throws IOException;
+    Result addResult(JsonReadable result);
 }

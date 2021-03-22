@@ -3,8 +3,6 @@ package com.alphagfx.testrail.impl;
 import com.alphagfx.testrail.CaseType;
 import org.json.JSONObject;
 
-import java.io.IOException;
-
 public class CaseTypeImpl implements CaseType {
 
 	private final JSONObject json;
@@ -21,7 +19,7 @@ public class CaseTypeImpl implements CaseType {
 	}
 
 	@Override
-	public JSONObject json() throws IOException {
+	public JSONObject json() {
 		return json;
 	}
 }

@@ -1,12 +1,10 @@
 package com.alphagfx.testrail;
 
-import java.io.IOException;
-
 public interface Suites {
 
-    Suite create(String name) throws IOException;
+    Suite create(String name);
 
-    Suite get(int id) throws IOException;
+    Suite get(int id);
 
-    Iterable<Suite> list() throws IOException;
+    Iterable<Suite> list();
 }

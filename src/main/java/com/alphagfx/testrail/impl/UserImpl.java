@@ -34,7 +34,11 @@ public class UserImpl implements User {
 	}
 
 	@Override
-	public JSONObject json() throws IOException {
-		return new JsonObjectResponse(base.url("index.php?/api/v2/get_user/" + id).execute()).body();
+	public JSONObject json() {
+		try {
+			return new JsonObjectResponse(base.url("index.php?/api/v2/get_user/" + id).execute()).body();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }
