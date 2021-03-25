@@ -6,5 +6,5 @@ interface Plans {
 
 	Plan get(int id);
 
-	Iterable<Plan> list();     //todo how to use internal filters?
+	Iterable<Plan> list(); //todo how to use internal filters?
 }

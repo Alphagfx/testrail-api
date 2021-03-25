@@ -2,16 +2,16 @@ package com.alphagfx.testrail;
 
 public interface Section extends JsonReadable, JsonPatchable {
 
-    Suite suite();
+	Suite suite();
 
 
-    int id();
+	int id();
 
-    void delete();
+	void delete();
 
-    Section createSection(String name);
+	Section createSection(String name);
 
-    Case createCase(String title, int templateId);
+	Case createCase(String title, int templateId);
 
-    Cases cases();
+	Cases cases();
 }

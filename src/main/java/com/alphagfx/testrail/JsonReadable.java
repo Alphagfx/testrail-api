@@ -4,5 +4,5 @@ import org.json.JSONObject;
 
 public interface JsonReadable {
 
-    JSONObject json();
+	JSONObject json();
 }

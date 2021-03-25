@@ -2,13 +2,13 @@ package com.alphagfx.testrail;
 
 public interface Run extends JsonReadable, JsonPatchable {
 
-    Project project();
+	Project project();
 
-    int id();
+	int id();
 
-    void close();
+	void close();
 
-    void delete();
+	void delete();
 
-    Iterable<Test> tests();
+	Iterable<Test> tests();
 }

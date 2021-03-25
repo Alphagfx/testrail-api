@@ -4,12 +4,12 @@ import java.io.File;
 
 public interface Test extends JsonReadable {
 
-    Run run();
+	Run run();
 
 
-    int id();
+	int id();
 
-    void assign(User assignee, String comment, Iterable<File> attachments);
+	void assign(User assignee, String comment, Iterable<File> attachments);
 
-    Result addResult(JsonReadable result);
+	Result addResult(JsonReadable result);
 }

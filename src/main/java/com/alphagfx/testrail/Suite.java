@@ -2,11 +2,11 @@ package com.alphagfx.testrail;
 
 public interface Suite extends JsonReadable, JsonPatchable {
 
-    Project project();
+	Project project();
 
-    int id();
+	int id();
 
-    void delete();
+	void delete();
 
-    Cases cases();
+	Cases cases();
 }

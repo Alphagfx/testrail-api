@@ -2,7 +2,7 @@ package com.alphagfx.testrail;
 
 public interface Cases {
 
-    Case get(int id);
+	Case get(int id);
 
-    Iterable<Case> list();
+	Iterable<Case> list();
 }

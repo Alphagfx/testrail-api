@@ -2,30 +2,30 @@ package com.alphagfx.testrail;
 
 public interface Plan extends JsonReadable, JsonPatchable {
 
-    TestRail testrail();
+	TestRail testrail();
 
 
-    int id();
+	int id();
 
 
-    void close();
+	void close();
 
-    void delete();
+	void delete();
 
-    Entry create(JsonReadable entryConfig); //todo verify number of required parameters
+	Entry create(JsonReadable entryConfig); //todo verify number of required parameters
 
-    Iterable<Entry> entries();
-
-
-    interface Entry extends JsonReadable, JsonPatchable {
-
-        Plan plan();
+	Iterable<Entry> entries();
 
 
-        int id();
+	interface Entry extends JsonReadable, JsonPatchable {
 
-        void delete();
+		Plan plan();
 
-        Runs runs();
-    }
+
+		int id();
+
+		void delete();
+
+		Runs runs();
+	}
 }

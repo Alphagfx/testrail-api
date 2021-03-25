@@ -1,24 +1,18 @@
 package com.alphagfx.testrail.impl;
 
+import com.alphagfx.http.HttpUrlRequest;
+import com.alphagfx.http.JsonArrayResponse;
+import com.alphagfx.http.Request;
+import com.alphagfx.http.RqStringUTF8;
+import com.alphagfx.http.body.EmptyBody;
+import com.alphagfx.testrail.*;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-
-import com.alphagfx.http.HttpUrlRequest;
-import com.alphagfx.http.JsonArrayResponse;
-import com.alphagfx.http.Request;
-import com.alphagfx.http.RqStringUTF8;
-import com.alphagfx.testrail.CaseFields;
-import com.alphagfx.testrail.CaseType;
-import com.alphagfx.testrail.Priority;
-import com.alphagfx.testrail.Projects;
-import com.alphagfx.testrail.Status;
-import com.alphagfx.testrail.TestRail;
-import com.alphagfx.testrail.Users;
-import com.alphagfx.http.body.EmptyBody;
-import org.json.JSONObject;
 
 public class TestRailImpl implements TestRail {
 

@@ -2,15 +2,15 @@ package com.alphagfx.testrail;
 
 public interface TestRail {
 
-    CaseFields caseFields();
+	CaseFields caseFields();
 
-    Iterable<CaseType> caseTypes();
+	Iterable<CaseType> caseTypes();
 
-    Iterable<Priority> priorities();
+	Iterable<Priority> priorities();
 
-    Projects projects();
+	Projects projects();
 
-    Iterable<Status> statuses();
+	Iterable<Status> statuses();
 
-    Users users();
+	Users users();
 }

@@ -2,9 +2,9 @@ package com.alphagfx.testrail;
 
 public interface Sections {
 
-    Section create(String name);
+	Section create(String name);
 
-    Section get(int id);
+	Section get(int id);
 
-    Iterable<Section> list();
+	Iterable<Section> list();
 }

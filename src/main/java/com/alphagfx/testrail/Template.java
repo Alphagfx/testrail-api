@@ -2,7 +2,7 @@ package com.alphagfx.testrail;
 
 public interface Template extends JsonReadable {
 
-    Project project();
+	Project project();
 
-    int id();
+	int id();
 }

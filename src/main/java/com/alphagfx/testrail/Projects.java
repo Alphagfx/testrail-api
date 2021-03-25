@@ -2,9 +2,9 @@ package com.alphagfx.testrail;
 
 public interface Projects {
 
-    Project create(String name, int suiteMode);
+	Project create(String name, int suiteMode);
 
-    Project get(int id);
+	Project get(int id);
 
-    Iterable<Project> list();
+	Iterable<Project> list();
 }

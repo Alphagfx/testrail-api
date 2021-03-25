@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 public interface CaseFields {
 
-    CaseField add(JSONObject json);
+	CaseField add(JSONObject json);
 
-    Iterable<CaseField> list();
+	Iterable<CaseField> list();
 }

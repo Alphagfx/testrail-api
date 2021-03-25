@@ -2,7 +2,7 @@ package com.alphagfx.http;
 
 import java.io.IOException;
 
-public class RqStringUTF8 implements Request<String>{
+public class RqStringUTF8 implements Request<String> {
 
 	private final Request<byte[]> request;
 
