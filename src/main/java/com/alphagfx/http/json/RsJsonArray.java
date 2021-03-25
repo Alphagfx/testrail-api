@@ -1,16 +1,17 @@
-package com.alphagfx.http;
+package com.alphagfx.http.json;
 
+import com.alphagfx.http.Response;
 import org.json.JSONArray;
 
 import java.util.List;
 import java.util.Map;
 
-public class JsonArrayResponse implements Response<JSONArray> {
+public class RsJsonArray implements Response<JSONArray> {
 
 	private final Response<String> strResponse;
 
 
-	public JsonArrayResponse(Response<String> strResponse) {
+	public RsJsonArray(Response<String> strResponse) {
 		this.strResponse = strResponse;
 	}
 

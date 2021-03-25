@@ -3,12 +3,12 @@ package com.alphagfx.http;
 import java.util.List;
 import java.util.Map;
 
-abstract class ResponseDecorator<T> implements Response<T> {
+public abstract class ResponseDecorator<T, V> implements Response<T> {
 
-	private final Response<?> response;
+	protected final Response<V> response;
 
 
-	ResponseDecorator(Response<?> strResponse) {
+	public ResponseDecorator(Response<V> strResponse) {
 		this.response = strResponse;
 	}
 

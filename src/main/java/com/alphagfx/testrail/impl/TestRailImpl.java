@@ -1,7 +1,7 @@
 package com.alphagfx.testrail.impl;
 
 import com.alphagfx.http.HttpUrlRequest;
-import com.alphagfx.http.JsonArrayResponse;
+import com.alphagfx.http.json.RsJsonArray;
 import com.alphagfx.http.Request;
 import com.alphagfx.http.RqStringUTF8;
 import com.alphagfx.http.body.EmptyBody;
@@ -33,7 +33,7 @@ public class TestRailImpl implements TestRail {
 	@Override
 	public Iterable<CaseType> caseTypes() {
 		try {
-			var response = new JsonArrayResponse(base.url("index.php?/api/v2/get_case_types").execute());
+			var response = new RsJsonArray(base.url("index.php?/api/v2/get_case_types").execute());
 			List<CaseType> result = StreamSupport.stream(response.body().spliterator(), false)
 				.map(o -> new CaseTypeImpl((JSONObject) o))
 				.collect(Collectors.toList());
