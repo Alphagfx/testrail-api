@@ -57,8 +57,15 @@ public class TestRailImpl implements TestRail {
 
 	@Override
 	public Iterable<Status> statuses() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			var response = new RsJsonArray(base.url("index.php?/api/v2/get_statuses").execute());
+			List<Status> result = StreamSupport.stream(response.body().spliterator(), false)
+				.map(o -> new StatusImpl((JSONObject) o))
+				.collect(Collectors.toList());
+			return result;
+		} catch (IOException e) {
+			throw new RuntimeException("Failed to get statuses for " + this, e);
+		}
 	}
 
 	@Override
