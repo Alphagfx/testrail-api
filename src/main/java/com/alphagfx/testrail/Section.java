@@ -7,6 +7,8 @@ public interface Section extends JsonReadable, JsonPatchable {
 
 	int id();
 
+	void moveTo(Section parent);
+
 	void delete();
 
 	Section createSection(String name);

@@ -11,5 +11,7 @@ public interface Case extends JsonReadable, JsonPatchable {
 
 	Template template();
 
+	void moveTo(Section parent);
+
 	void delete();
 }
