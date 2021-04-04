@@ -45,8 +45,15 @@ public class TestRailImpl implements TestRail {
 
 	@Override
 	public Iterable<Priority> priorities() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			var response = new RsJsonArray(base.url("index.php?/api/v2/get_priorities").execute());
+			List<Priority> result = StreamSupport.stream(response.body().spliterator(), false)
+				.map(o -> new PriorityImpl((JSONObject) o))
+				.collect(Collectors.toList());
+			return result;
+		} catch (IOException e) {
+			throw new RuntimeException("Failed to get priorities for " + this, e);
+		}
 	}
 
 	@Override
