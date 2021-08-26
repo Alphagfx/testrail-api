@@ -1,5 +1,6 @@
-package com.alphagfx.testrail;
+package com.alphagfx.testrail.impl;
 
+import com.alphagfx.testrail.Priority;
 import org.json.JSONObject;
 
 public class PriorityImpl implements Priority {
