@@ -33,7 +33,7 @@ public class RqStringUTF8 implements Request<String> {
 	}
 
 	@Override
-	public Response<String> execute() throws IOException {
+	public Response<String> execute() {
 		return new RsStringUTF8(request.execute());
 	}
 }

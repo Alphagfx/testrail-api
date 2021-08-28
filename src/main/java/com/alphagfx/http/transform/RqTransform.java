@@ -1,8 +1,9 @@
 package com.alphagfx.http.transform;
 
-import com.alphagfx.http.*;
+import com.alphagfx.http.Request;
+import com.alphagfx.http.RequestFailedException;
+import com.alphagfx.http.Response;
 
-import java.io.IOException;
 import java.util.function.Function;
 
 public class RqTransform<V, T> implements Request<T> {
@@ -38,7 +39,7 @@ public class RqTransform<V, T> implements Request<T> {
 	}
 
 	@Override
-	public Response<T> execute() throws IOException {
+	public Response<T> execute() {
 		return new RsTransform<>(base.execute(), transform);
 	}
 }

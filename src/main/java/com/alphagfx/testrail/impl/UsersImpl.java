@@ -1,5 +1,6 @@
 package com.alphagfx.testrail.impl;
 
+import com.alphagfx.http.RequestFailedException;
 import com.alphagfx.http.json.RsJsonArray;
 import com.alphagfx.http.Request;
 import com.alphagfx.http.json.RsJsonObjectStream;
@@ -33,7 +34,7 @@ public class UsersImpl implements Users {
 			return new RsJsonObjectStream(new RsJsonArray(base.url("index.php?/api/v2/get_users").execute())).body()
 				.map(o -> new UserImpl(testrail, base, o.getInt("id")))
 				.collect(Collectors.toList());
-		} catch (IOException e) {
+		} catch (RequestFailedException e) {
 			throw new RuntimeException(e); // TODO: 3/26/21 Fix exception type and message in 'list users'
 		}
 	}

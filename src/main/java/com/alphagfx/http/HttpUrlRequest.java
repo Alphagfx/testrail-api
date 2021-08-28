@@ -63,37 +63,41 @@ public class HttpUrlRequest implements Request<byte[]> {
 	}
 
 	@Override
-	public Response<byte[]> execute() throws IOException {
-		URL url = this.uri.toURL();
-		URLConnection connection = url.openConnection();
-		HttpURLConnection conn = (HttpURLConnection) connection;
+	public Response<byte[]> execute() throws RequestFailedException {
 		try {
-			conn.setConnectTimeout(60_1000);
-			conn.setRequestMethod(method);
-			conn.setUseCaches(false);
-			conn.setInstanceFollowRedirects(false);
-			for (final Map.Entry<String, String> header : headers.entrySet()) {
-				conn.addRequestProperty(header.getKey(), header.getValue());
-			}
-			conn.connect();
-			if (method.equals("POST") || method.equals("PUT") || method.equals("PATCH")) {
-				conn.setDoOutput(true);
-				try (OutputStream os = conn.getOutputStream();
-					 WritableByteChannel output = Channels.newChannel(os)) {
-
-					body.writeTo(output);
+			URL url = this.uri.toURL();
+			URLConnection connection = url.openConnection();
+			HttpURLConnection conn = (HttpURLConnection) connection;
+			try {
+				conn.setConnectTimeout(60_000);
+				conn.setRequestMethod(method);
+				conn.setUseCaches(false);
+				conn.setInstanceFollowRedirects(false);
+				for (final Map.Entry<String, String> header : headers.entrySet()) {
+					conn.addRequestProperty(header.getKey(), header.getValue());
 				}
+				conn.connect();
+				if (method.equals("POST") || method.equals("PUT") || method.equals("PATCH")) {
+					conn.setDoOutput(true);
+					try (OutputStream os = conn.getOutputStream();
+						 WritableByteChannel output = Channels.newChannel(os)) {
+
+						body.writeTo(output);
+					}
+				}
+				return new SimpleResponse(
+					conn.getResponseCode(),
+					conn.getResponseMessage(),
+					conn.getHeaderFields(),
+					body(conn)
+				);
+			} catch (final IOException exp) {
+				throw new IOException(String.format("Failed %s request to %s", method, url), exp);
+			} finally {
+				conn.disconnect();
 			}
-			return new SimpleResponse(
-				conn.getResponseCode(),
-				conn.getResponseMessage(),
-				conn.getHeaderFields(),
-				body(conn)
-			);
-		} catch (final IOException exp) {
-			throw new IOException(String.format("Failed %s request to %s", method, url), exp);
-		} finally {
-			conn.disconnect();
+		} catch (Exception e) {
+			throw new RequestFailedException(e);
 		}
 	}
 

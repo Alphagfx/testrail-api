@@ -13,7 +13,7 @@ public interface Request<T> {
 
 	Request<T> body(Body body);
 
-	Response<T> execute() throws IOException;
+	Response<T> execute() throws RequestFailedException;
 
 
 	interface Body {

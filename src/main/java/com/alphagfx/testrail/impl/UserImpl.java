@@ -1,5 +1,6 @@
 package com.alphagfx.testrail.impl;
 
+import com.alphagfx.http.RequestFailedException;
 import com.alphagfx.http.json.RsJsonObject;
 import com.alphagfx.http.Request;
 import com.alphagfx.testrail.TestRail;
@@ -37,7 +38,7 @@ public class UserImpl implements User {
 	public JSONObject json() {
 		try {
 			return new RsJsonObject(base.url("index.php?/api/v2/get_user/" + id).execute()).body();
-		} catch (IOException e) {
+		} catch (RequestFailedException e) {
 			throw new RuntimeException(e);
 		}
 	}

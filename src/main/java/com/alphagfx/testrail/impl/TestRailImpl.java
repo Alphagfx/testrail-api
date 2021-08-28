@@ -1,6 +1,7 @@
 package com.alphagfx.testrail.impl;
 
 import com.alphagfx.http.HttpUrlRequest;
+import com.alphagfx.http.RequestFailedException;
 import com.alphagfx.http.json.RsJsonArray;
 import com.alphagfx.http.Request;
 import com.alphagfx.http.RqStringUTF8;
@@ -38,7 +39,7 @@ public class TestRailImpl implements TestRail {
 				.map(o -> new CaseTypeImpl((JSONObject) o))
 				.collect(Collectors.toList());
 			return result;
-		} catch (IOException e) {
+		} catch (RequestFailedException e) {
 			throw new RuntimeException("Failed to get case types for " + this, e);
 		}
 	}
@@ -51,7 +52,7 @@ public class TestRailImpl implements TestRail {
 				.map(o -> new PriorityImpl((JSONObject) o))
 				.collect(Collectors.toList());
 			return result;
-		} catch (IOException e) {
+		} catch (RequestFailedException e) {
 			throw new RuntimeException("Failed to get priorities for " + this, e);
 		}
 	}
@@ -70,7 +71,7 @@ public class TestRailImpl implements TestRail {
 				.map(o -> new StatusImpl((JSONObject) o))
 				.collect(Collectors.toList());
 			return result;
-		} catch (IOException e) {
+		} catch (RequestFailedException e) {
 			throw new RuntimeException("Failed to get statuses for " + this, e);
 		}
 	}
