@@ -1,8 +1,6 @@
 package com.alphagfx.testrail.impl;
 
 
-import com.alphagfx.http.RequestFailedException;
-import com.alphagfx.http.json.RsJsonObject;
 import com.alphagfx.http.Request;
 import com.alphagfx.http.Response;
 import com.alphagfx.http.transform.RqTransform;
