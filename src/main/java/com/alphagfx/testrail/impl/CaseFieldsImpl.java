@@ -30,7 +30,7 @@ public class CaseFieldsImpl implements CaseFields {
 			new AsJsonObject()
 		);
 		Response<JSONObject> response = request.execute();
-		return new CaseFieldImpl(response.body().getInt("id"), this);
+		return new CaseFieldImpl(response.body());
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class CaseFieldsImpl implements CaseFields {
 		);
 		Response<Stream<JSONObject>> response = request.execute();
 		return response.body()
-			.map(o -> new CaseFieldImpl(o.getInt("id"), this))
+			.map(CaseFieldImpl::new)
 			.collect(Collectors.toList());
 	}
 }
