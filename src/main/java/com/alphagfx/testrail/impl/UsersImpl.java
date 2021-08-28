@@ -1,15 +1,17 @@
 package com.alphagfx.testrail.impl;
 
-import com.alphagfx.http.RequestFailedException;
-import com.alphagfx.http.json.RsJsonArray;
 import com.alphagfx.http.Request;
-import com.alphagfx.http.json.RsJsonObjectStream;
+import com.alphagfx.http.Response;
+import com.alphagfx.http.transform.RqTransform;
+import com.alphagfx.http.transform.util.json.AsJsonArray;
+import com.alphagfx.http.transform.util.json.AsJsonObjectStream;
 import com.alphagfx.testrail.TestRail;
 import com.alphagfx.testrail.User;
 import com.alphagfx.testrail.Users;
+import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class UsersImpl implements Users {
 
@@ -30,12 +32,13 @@ public class UsersImpl implements Users {
 
 	@Override
 	public Iterable<User> list() {
-		try {
-			return new RsJsonObjectStream(new RsJsonArray(base.url("index.php?/api/v2/get_users").execute())).body()
-				.map(o -> new UserImpl(testrail, base, o.getInt("id")))
-				.collect(Collectors.toList());
-		} catch (RequestFailedException e) {
-			throw new RuntimeException(e); // TODO: 3/26/21 Fix exception type and message in 'list users'
-		}
+		Request<Stream<JSONObject>> request = new RqTransform<>(
+			base.url("index.php?/api/v2/get_users"),
+			new AsJsonArray().andThen(new AsJsonObjectStream())
+		);
+		Response<Stream<JSONObject>> response = request.execute();
+		return response.body()
+			.map(o -> new UserImpl(testrail, base, o.getInt("id")))
+			.collect(Collectors.toList());
 	}
 }

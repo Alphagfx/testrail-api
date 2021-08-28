@@ -1,13 +1,15 @@
 package com.alphagfx.testrail.impl;
 
+
 import com.alphagfx.http.RequestFailedException;
 import com.alphagfx.http.json.RsJsonObject;
 import com.alphagfx.http.Request;
+import com.alphagfx.http.Response;
+import com.alphagfx.http.transform.RqTransform;
+import com.alphagfx.http.transform.util.json.AsJsonObject;
 import com.alphagfx.testrail.TestRail;
 import com.alphagfx.testrail.User;
 import org.json.JSONObject;
-
-import java.io.IOException;
 
 public class UserImpl implements User {
 
@@ -36,10 +38,11 @@ public class UserImpl implements User {
 
 	@Override
 	public JSONObject json() {
-		try {
-			return new RsJsonObject(base.url("index.php?/api/v2/get_user/" + id).execute()).body();
-		} catch (RequestFailedException e) {
-			throw new RuntimeException(e);
-		}
+		Request<JSONObject> request = new RqTransform<>(
+			base.url("index.php?/api/v2/get_user/" + id),
+			new AsJsonObject()
+		);
+		Response<JSONObject> response = request.execute();
+		return response.body();
 	}
 }
