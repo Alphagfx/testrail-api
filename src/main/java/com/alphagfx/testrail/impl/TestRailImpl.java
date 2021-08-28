@@ -7,23 +7,23 @@ import com.alphagfx.http.Response;
 import com.alphagfx.http.transform.RqTransform;
 import com.alphagfx.http.transform.util.AsStringUTF8;
 import com.alphagfx.http.transform.util.json.AsJsonArray;
+import com.alphagfx.http.transform.util.json.AsJsonObjectStream;
 import com.alphagfx.testrail.*;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import java.util.stream.Stream;
 
 public class TestRailImpl implements TestRail {
 
 	private final Request<String> base;
-	private final Request<JSONArray> baseJsonArray;
+	private final Request<Stream<JSONObject>> baseJsonObjStream;
 
 
 	public TestRailImpl(String url) {
 		this.base = new RqTransform<>(new HttpUrlRequest(url), new AsStringUTF8());
-		this.baseJsonArray = new RqTransform<>(this.base, new AsJsonArray());
+		this.baseJsonObjStream = new RqTransform<>(this.base, new AsJsonArray().andThen(new AsJsonObjectStream()));
 	}
 
 
@@ -35,10 +35,10 @@ public class TestRailImpl implements TestRail {
 	@Override
 	public Iterable<CaseType> caseTypes() {
 		try {
-			Request<JSONArray> request = baseJsonArray.url("index.php?/api/v2/get_case_types");
-			Response<JSONArray> response = request.execute();
-			List<CaseType> result = StreamSupport.stream(response.body().spliterator(), false)
-				.map(o -> new CaseTypeImpl((JSONObject) o))
+			Request<Stream<JSONObject>> request = baseJsonObjStream.url("index.php?/api/v2/get_case_types");
+			Response<Stream<JSONObject>> response = request.execute();
+			List<CaseType> result = response.body()
+				.map(CaseTypeImpl::new)
 				.collect(Collectors.toList());
 			return result;
 		} catch (RequestFailedException e) {
@@ -49,10 +49,10 @@ public class TestRailImpl implements TestRail {
 	@Override
 	public Iterable<Priority> priorities() {
 		try {
-			Request<JSONArray> req = baseJsonArray.url("index.php?/api/v2/get_priorities");
-			Response<JSONArray> res = req.execute();
-			List<Priority> result = StreamSupport.stream(res.body().spliterator(), false)
-				.map(o -> new PriorityImpl((JSONObject) o))
+			Request<Stream<JSONObject>> request = baseJsonObjStream.url("index.php?/api/v2/get_priorities");
+			Response<Stream<JSONObject>> response = request.execute();
+			List<Priority> result = response.body()
+				.map(PriorityImpl::new)
 				.collect(Collectors.toList());
 			return result;
 		} catch (RequestFailedException e) {
@@ -69,10 +69,10 @@ public class TestRailImpl implements TestRail {
 	@Override
 	public Iterable<Status> statuses() {
 		try {
-			Request<JSONArray> request = baseJsonArray.url("index.php?/api/v2/get_statuses");
-			Response<JSONArray> response = request.execute();
-			List<Status> result = StreamSupport.stream(response.body().spliterator(), false)
-				.map(o -> new StatusImpl((JSONObject) o))
+			Request<Stream<JSONObject>> request = baseJsonObjStream.url("index.php?/api/v2/get_statuses");
+			Response<Stream<JSONObject>> response = request.execute();
+			List<Status> result = response.body()
+				.map(StatusImpl::new)
 				.collect(Collectors.toList());
 			return result;
 		} catch (RequestFailedException e) {
