@@ -29,8 +29,7 @@ public class TestRailImpl implements TestRail {
 
 	@Override
 	public CaseFields caseFields() {
-		// TODO Auto-generated method stub
-		return null;
+		return new CaseFieldsImpl(base);
 	}
 
 	@Override
